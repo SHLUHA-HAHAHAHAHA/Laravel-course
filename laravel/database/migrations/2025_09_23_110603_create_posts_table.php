@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->integer("likes");
             $table->boolean("is_published");
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
