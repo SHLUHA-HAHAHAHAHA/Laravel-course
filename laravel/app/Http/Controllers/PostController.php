@@ -100,7 +100,7 @@ class PostController extends Controller
             'likes'=>50000,
             'is_published'=>1,
         ];
-        $post = Post::updateOrCreate([ 
+        $post = Post::updateOrCreate([
             'title'=>'ТЕст some'
         ],[
             'title'=>'ТЕст some',
