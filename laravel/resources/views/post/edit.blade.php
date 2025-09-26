@@ -17,6 +17,13 @@
            <label for="image" class="form-label">Image</label>
            <input type="text" name="image" class="form-control" id="image" value="{{$post->image}}">
        </div>
+       <select class="form-select" name="category_id" aria-label="Default select example">
+           @foreach($categories as $category)
+               <option
+                   {{$category->id === $post->category->id ? 'selected' : ''}}
+                   value="{{$category->id}}">{{$category->title}}</option>
+           @endforeach
+       </select>
 
        <button type="submit" class="btn btn-primary">Update</button>
    </form>

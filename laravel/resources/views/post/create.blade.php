@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title')Posts @endsection
+@section('title')Post create @endsection
 @section('content')
 
    <form action="{{route('post.store')}}" method="post">
@@ -16,7 +16,14 @@
            <label for="image" class="form-label">Image</label>
            <input type="text" name="image" class="form-control" id="image">
        </div>
+       <select class="form-select" name="category_id" aria-label="Default select example">
+           <option selected>Open this select menu</option>
+            @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->title}}</option>
+            @endforeach
+       </select>
 
-       <button type="submit" class="btn btn-primary">Create</button>
+
+       <button type="submit" class="btn btn-primary mt-4">Create</button>
    </form>
 @endsection
