@@ -6,11 +6,19 @@
        @csrf
        <div class="mb-3">
            <label for="title" class="form-label">Title</label>
-           <input type="text" name="title" class="form-control" id="title">
+           <input
+               value="{{old('title')}}"
+               type="text" name="title" class="form-control" id="title">
+           @error('title')
+           <p class="text-danger">{{$message}}</p>
+           @enderror
        </div>
       <div class="mb-3">
            <label for="content" class="form-label">Content</label>
           <textarea type="text" name="content" class="form-control" id="content"> </textarea>
+          @error('content')
+          <p class="text-danger">{{$message}}</p>
+          @enderror
        </div>
       <div class="mb-3">
            <label for="image" class="form-label">Image</label>
@@ -18,9 +26,10 @@
        </div>
        <label for="categories" class="form-label">Select category</label>
        <select class="form-select" id="categories" name="category_id">
-           <option selected>Open this select menu</option>
             @foreach($categories as $category)
-                <option value="{{$category->id}}">{{$category->title}}</option>
+                <option
+                    {{old('$category') == $category->id ? 'selected' : ''}}
+                    value="{{$category->id}}">{{$category->title}}</option>
             @endforeach
        </select>
        <label for="tags" class="form-label">Select tag</label>
