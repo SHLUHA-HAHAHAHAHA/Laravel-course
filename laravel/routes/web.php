@@ -21,22 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/', [MyPlaceController::class,'index']);
 
-Route::get('/posts/update', [PostController::class,'update']);
-Route::get('/posts/delete', [PostController::class,'delete']);
-Route::get('/posts/restore', [PostController::class,'restore']);
-Route::get('/posts/first_or_create', [PostController::class,'firstOrCreate']);
-Route::get('/posts/update_or_create', [PostController::class,'updateOrCreate']);
+Route::group(['namespace' => 'Post'], function () {;
 
-Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
-Route::get('/posts', [PostController::class,'index'])->name('post.index');
-Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
-Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');
-Route::patch('/posts/{post}', [PostController::class,'update'])->name('post.update');
-Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.delete');
+    Route::get('/posts', 'IndexController')->name('post.index');
+    Route::get('/posts/create', 'CreateController')->name('post.create');
 
+    Route::post('/posts', 'StoreController')->name('post.store');
+    Route::get('/posts/{posts}', 'ShowController')->name('post.show');
+    Route::get('/posts/{posts}/edit', 'EditController')->name('post.edit');
+    Route::patch('/posts/{posts}', 'UpdateController')->name('post.update');
+    Route::delete('/posts/{posts}', 'DestroyController')->name('post.delete');
 
-Route::post('/posts', [PostController::class,'store'])->name('post.store');
-
+});
 
 Route::get('/', [MainController::class,'index'])->name('main.index');
 Route::get('/contacts', [ContactsController::class,'index'])->name('contact.index');
